@@ -3,16 +3,13 @@ package com.example.act6;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.hardware.camera2.TotalCaptureResult;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.act6.database.DBController;
-import com.example.act6.database.Teman;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.HashMap;
 
@@ -29,7 +26,7 @@ public class TemanBaru extends AppCompatActivity {
 
         tNama = (TextInputEditText) findViewById(R.id.tietNama);
         tTelpon = (TextInputEditText) findViewById(R.id.tietTelpon);
-        btnSimpan = (Button) findViewById(R.id.buttonSave);
+        btnSimpan = (Button) findViewById(R.id.buttonHapus);
 
         btnSimpan.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         recyclerView = findViewById(R.id.recyclerView);
-        fab = findViewById(R.id.floatingBtn);
+        fab = findViewById(R.id.floatingBtn); 
         BacaData();
         adapter = new TemanAdapter(temanArrayList);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);

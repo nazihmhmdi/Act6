@@ -6,20 +6,21 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.act6.MainActivity;
 import com.example.act6.R;
+import com.example.act6.TemanBaru;
+import com.example.act6.UpdateData;
 import com.example.act6.database.Teman;
-import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class TemanAdapter extends RecyclerView.Adapter<TemanAdapter.TemanViewHolder> implements PopupMenu.OnMenuItemClickListener{
 
@@ -28,6 +29,7 @@ public class TemanAdapter extends RecyclerView.Adapter<TemanAdapter.TemanViewHol
     public TemanAdapter(ArrayList<Teman> listData) {
         this.listData = listData;
     }
+
 
     @Override
     public TemanViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -55,6 +57,7 @@ public class TemanAdapter extends RecyclerView.Adapter<TemanAdapter.TemanViewHol
         private TextView namaTxt,telponTxt;
 
         public TemanViewHolder(View view) {
+
             super(view);
             cardku = (CardView) view.findViewById(R.id.kartuku);
             namaTxt = (TextView) view.findViewById(R.id.textNama);
@@ -84,10 +87,11 @@ public class TemanAdapter extends RecyclerView.Adapter<TemanAdapter.TemanViewHol
     public boolean onMenuItemClick(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.edit:
-
+//                Intent intent = new Intent(MainActivity.this, UpdateData.class);
+//                startActivity(intent);
                 break;
             case R.id.hapus:
-
+//
                 break;
         }
         return false;
