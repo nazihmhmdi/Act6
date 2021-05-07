@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -15,34 +16,34 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.act6.MainActivity;
 import com.example.act6.R;
-import com.example.act6.TemanBaru;
 import com.example.act6.UpdateData;
+import com.example.act6.database.DBController;
 import com.example.act6.database.Teman;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class TemanAdapter extends RecyclerView.Adapter<TemanAdapter.TemanViewHolder> implements PopupMenu.OnMenuItemClickListener{
-
     private ArrayList<Teman> listData;
+    String id,nm,tlp;
+    View view;
+
 
     public TemanAdapter(ArrayList<Teman> listData) {
         this.listData = listData;
     }
 
-
     @Override
     public TemanViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInf = LayoutInflater.from(parent.getContext());
-        View view = layoutInf.inflate(R.layout.row_data_teman, parent, false);
+        view = layoutInf.inflate(R.layout.row_data_teman, parent, false);
 
         return new TemanViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull TemanViewHolder holder, int position) {
-        String nm,tlp;
-
+        id = listData.get(position).getId();
         nm = listData.get(position).getNama();
         tlp = listData.get(position).getTelpon();
 
@@ -53,8 +54,10 @@ public class TemanAdapter extends RecyclerView.Adapter<TemanAdapter.TemanViewHol
     }
 
     public class TemanViewHolder extends RecyclerView.ViewHolder {
+
         private CardView cardku;
         private TextView namaTxt,telponTxt;
+
 
         public TemanViewHolder(View view) {
 
@@ -85,13 +88,22 @@ public class TemanAdapter extends RecyclerView.Adapter<TemanAdapter.TemanViewHol
 
     @Override
     public boolean onMenuItemClick(MenuItem item) {
+        DBController controller = new DBController(view.getContext());
         switch (item.getItemId()) {
             case R.id.edit:
-//                Intent intent = new Intent(MainActivity.this, UpdateData.class);
-//                startActivity(intent);
+                Intent intent = new Intent(view.getContext(), UpdateData.class);
+                intent.putExtra("id", id);
+                intent.putExtra("nama", nm);
+                intent.putExtra("telpon", tlp);
+                view.getContext().startActivity(intent);
                 break;
             case R.id.hapus:
-//
+                HashMap<String,String> qvalues = new HashMap<>();
+                qvalues.put("id", id);
+                controller.deleteData(qvalues);
+                Intent i = new Intent(view.getContext(), MainActivity.class);
+                view.getContext().startActivity(i);
+                Toast.makeText(view.getContext(),"Data sudah dihapus !", Toast.LENGTH_LONG).show();
                 break;
         }
         return false;

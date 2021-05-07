@@ -9,7 +9,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Act6">
-        <activity android:name=".HapusData"></activity>
         <activity android:name=".UpdateData" />
         <activity android:name=".TemanBaru" />
         <activity android:name=".MainActivity">
